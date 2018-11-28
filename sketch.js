@@ -50,7 +50,7 @@ function draw() {
  // trasformo i toni in spazio
   var volume = analyzer.getLevel();
   var volume1 = map(volume, 0, 1,50, width/2);
-  ellipse(windowWidth/2-10, windowHeight/2, 100);
+
 
 if(click == -1) {
 
@@ -74,16 +74,18 @@ for (var j = 0; j < balls.length; j++ ) {
       var myRate = map(t, 1, 10,0,2);
       mySongF.rate(myRate);
       colorMode(HSB)
-      var myColor = map(volume, 0, 1,70, 255);
-     balls[j].hue = myColor;
-     balls[j].saturation = myColor;
-     balls[j].brightness = myColor;
+      var myColor = map(volume, 0, 1,0, 255);
+     balls[j].hue = myColor*2;
+     balls[j].saturation = 255;
+     balls[j].brightness = 255;
 
 }}
   var volume = 2;
   var myVolume = map(volume, 2, 10, 2,20);
   mySongF.amp(myVolume);
 
+
+if(click == -1) {
   push();
   rectMode(CENTER);
 
@@ -95,11 +97,28 @@ for (var j = 0; j < balls.length; j++ ) {
    rect(myVelocitaX,myVelocitaY,50,50)
    if(((myVelocitaX - mouseX) ** 2) + ((myVelocitaY - mouseY) ** 2) < 600 && t>5) {t = t- 0.5}
 
-   rect(myVolumeX,myVolumeY,50,50)
-   if(((myVolumeX - mouseX) ** 2) + ((myVolumeY - mouseY) ** 2) < 600 ) {volume = volume+ 1}
-   console.log(volume)
+   var myVolume = map(mouseX, width, 0, 0,2);
+   mySongF.amp(myVolume);
+
+/*   rect(myVolumeX,myVolumeY,50,50)
+   if(((myVolumeX - mouseX) ** 2) + ((myVolumeY - mouseY) ** 2) < 600 ) {volume = volume+ 1}*/
+
 
   pop();
+
+
+}
+
+if(click == 1 && frameCount < 300 ) {
+  textAlign(CENTER);
+  textSize(25);
+  text('Click on the central button to let the music play.\nKeep the mouse pressed and go around the texture to change the rate.\n Go over the red button to get back to the normal rate.\n Move the mouse along the x axis to change the volume', windowWidth/2, windowHeight/2-200)
+}
+
+push()
+fill('white')
+ellipse(windowWidth/2-10, windowHeight/2, 100);
+pop()
 
 
 }
