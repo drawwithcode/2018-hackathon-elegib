@@ -116,7 +116,7 @@ if(click == 1 && frameCount < 300 ) {
 }
 
 push()
-fill('white')
+fill('grey')
 ellipse(windowWidth/2-10, windowHeight/2, 100);
 pop()
 
